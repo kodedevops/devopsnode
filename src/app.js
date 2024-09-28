@@ -2,37 +2,36 @@ import express from "express";
 const app = express();
 const port = 3000;
 
+const router = express.Router();
 app.use(express.json());
 
-
-// Define the context path (base path)
-const contextPath = '/nodejs-service';
-// Add middleware to prepend context path to all routes
-app.use(contextPath, (req, res, next) => {
-    next();
-});
-
-
 // Define a simple GET endpoint
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
   res.send("Hello, World!");
 });
 
-app.get("/first/hello", (req, res) => {
+router.get("/first", (req, res) => {
+  res.send("Hello, World, First!");
+});
+
+router.get("/first/hello", (req, res) => {
   res.json({ message: "Hello World" });
 });
 
-app.get("/first/list", (req, res) => {
+router.get("/first/list", (req, res) => {
   res.json(["delhi", "calcutta", "chennai"]);
 });
 
-app.get("/first/map", (req, res) => {
+router.get("/first/map", (req, res) => {
   res.json({ uid: "1", uname: "jai", email: "jai@gmail.com" });
 });
 
-app.get("/first/health", (req, res) => {
+router.get("/first/health", (req, res) => {
   res.json({ status: "ok" });
 });
+
+// Use the context path '/nodejs-service' for the router
+app.use("/nodejs-service", router);
 
 // Start the server
 app.listen(port, () => {
