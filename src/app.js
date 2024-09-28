@@ -4,6 +4,15 @@ const port = 3000;
 
 app.use(express.json());
 
+
+// Define the context path (base path)
+const contextPath = '/nodejs-service';
+// Add middleware to prepend context path to all routes
+app.use(contextPath, (req, res, next) => {
+    next();
+});
+
+
 // Define a simple GET endpoint
 app.get("/", (req, res) => {
   res.send("Hello, World!");
