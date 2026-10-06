@@ -1,0 +1,178 @@
+// second largest number //
+var arr = [20, 120, 111, 215, 215, 78];
+arr.sort((a, b) => b - a); // desc
+var tempArr = [...new Set(arr)];
+console.log(tempArr[0]); //  largest
+console.log(tempArr[1]); // second largest
+
+const alphanumbers = ["items1", "items29", "items13", "items2", "items14"];
+const sortnumbers = alphanumbers.sort((a, b) => a.slice(-1) - b.slice(-1)); //ASC
+arr.sort((a, b) => a.name.localeCompare(b.name));
+
+function sortArray(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = 0; j < arr.length; j++) {
+      if (arr[j] > arr[i]) {
+        let temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
+      }
+    }
+  }
+  console.log(arr);
+}
+sortArray([2, 6, 0, 4, 3, 4, 3, 5, 9, 6, 12, 43, 6]);
+
+function sortArray(arr) {
+  for (var j = 0; j < arr.length; j++) {
+    if (arr[j] > arr[j + 1]) {
+      let temp = arr[j];
+      arr[j] = arr[j + 1];
+      arr[j + 1] = temp;
+      j = -1;
+    }
+  }
+  console.log(arr);
+}
+sortArray([2, 6, 0, 4, 3, 4, 3, 99, 5, 9, 6, 12, 43, 6]);
+
+///// Srcond Largest /////
+function findSecondLargestElem(arr) {
+  let first = -1,
+    second = -1;
+
+  for (let i = 0; i <= arr.length - 1; i++) {
+    if (arr[i] > first) {
+      second = first;
+      first = arr[i];
+    } else if (arr[i] > second && arr[i] != first) {
+      second = arr[i];
+    }
+  }
+  console.log(second);
+}
+let arr = [12, 35, 35, 1, 10, 34, 1];
+findSecondLargestElem(arr);
+
+///// Remove Duplicate /////
+let arr = ["apple", "mango", "apple", "orange", "mango", "mango"];
+function removeDuplicates(arr) {
+  let unique = [];
+  arr.forEach((element) => {
+    if (!unique.includes(element)) {
+      unique.push(element);
+    }
+  });
+  return unique;
+}
+console.log(removeDuplicates(arr));
+
+///// COUNT DUPLICATE of value /////
+let arrayList = [1, 2, 3, 2, 3, 4, 3, 2, 5, 1, 3, 4, 2];
+let tempArr = [...new Set(arrayList)];
+for (let i = 0; i < tempArr.length; i++) {
+  let countVal = 0;
+  for (let j = 0; j < arrayList.length; j++) {
+    if (tempArr[i] === arrayList[j]) {
+      countVal = countVal + 1;
+    }
+  }
+  console.log(tempArr[i] + "=" + countVal);
+}
+
+const arr = [5, 5, 5, 2, 2, 2, 2, 2, 9, 4];
+let count = {};
+function check(arr) {
+  for (let item of arr) {
+    count[item] = count[item] ? count[item] + 1 : 1;
+  }
+
+  console.log(count);
+}
+check(arr);
+
+///// REVERSE STRING /////
+let reverseString = arr.split("").reverse().join("");
+
+let str = "Sunil";
+let aNewString = "";
+for (let i = 0; i < str.length; i++) {
+  aNewString = str[i] + aNewString;
+}
+
+///// REVERSE NUMBER /////
+let reverseNumber = parseInt(int.toString().split("").reverse().join(""));
+
+function reverseNumber(number) {
+  var revNumber = 0;
+  while (number > 0) {
+    revNumber = revNumber * 10 + (number % 10);
+    number = Math.floor(number / 10);
+  }
+  return revNumber;
+}
+console.log(reverseNumber(876));
+
+///// Sum of any two number is 10 /////
+function sumOfTwo(array, sumNumber) {
+  let res = [];
+  for (i of array) {
+    for (j of array) {
+      if (i + j === sumNumber) {
+        console.log([i, j]);
+        res.push([i, j]); // Output: [ [ 4, 6 ], [ 2, 8 ], [ 2, 8 ], [ 3, 7 ] ]
+        res = [i, j, ...res]; // Output: [3, 7, 2, 8, 2, 8, 4, 6]
+      }
+    }
+  }
+}
+console.log(sumOfTwo([1, 2, 3], 4));
+
+const twoSum = (arr, sum) => {
+  let obj = {};
+  let res = [];
+  arr.map((item) => {
+    let com = sum - item;
+    if (obj[com]) {
+      res.push([obj[com], item]); // Output: [ [ 4, 6 ], [ 2, 8 ], [ 2, 8 ], [ 3, 7 ] ]
+      res = [obj[com], item, ...res]; // Output: [3, 7, 2, 8, 2, 8, 4, 6]
+    } else {
+      obj[item] = item;
+    }
+  });
+  console.log(res);
+};
+twoSum([2, 3, 2, 5, 4, 9, 6, 8, 8, 7], 10);
+
+// curring for 3/4 item
+function add(a) {
+  return (b) => {
+    if (!b) return a;
+    return a + b;
+  };
+}
+let result1 = add(1)(2)(3)(4)(5)();
+console.log("3 or 4 item sum : " + result1);
+
+// curring with n number of item
+function sum(a) {
+  return (b) => {
+    if (!b) return a;
+    return sum(a + b);
+  };
+}
+let result = sum(1)(2)(3)(4)(5)();
+console.log("n number item sum dynamicaly : " + result);
+
+let a = 3;
+let b = a++;
+let c = ++a;
+console.log(a, b, c); // 5,3,5
+Re;
+
+const {
+  name,
+  age,
+  address: { city },
+} = emp;
+const balanceStr = "())())()))";

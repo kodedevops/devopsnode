@@ -1,0 +1,167 @@
+Angular Interview Question:
+
+ANGULAR IVY (V-9) => Ivy is the code name for Angular's next-generation compilation and rendering pipeline.
+
+ANGULAR : Angular is a javascript UI binding fremwork, which bind view(HTML) with model(object). It also helps to build SPA by using routing.
+
+                            AngularJs                               Angular
+    Language               javascript                              Typescript
+    Architucture        controller based                        Component based
+    CLI                     no                                       Yes
+    Lazy Loading            no                                       Yes
+    SEO
+
+ANGULAR LIFECYCLE HOOKS : ngonChange
+                          ngOnInit
+                          ngDoCheck
+                          ngAfterViewInit                                                                                                                                     
+                          ngAfterViewChecked
+                          ngAfterContentInit
+                          ngAfterContentChecked
+                          ngOnDistroy                     
+
+TYPESCRIPT  : Typescript is a superset of javascript, it adds types to javascript, it finally converts into javascript
+
+COMPONENT   : helps to bind view with model, bind class
+MODULE      : Module helps to group component
+              module is set of Angular basic building blocks like component, directives, services etc. 
+              An app can have more than one module.
+
+LOADING     : Eager Loading, Lazy Loading, Pre Loading
+LAZYLOADING : Lazyly loading
+                    First page Eager loading, create different module for different pages
+                    remove from appModule, add route to appRouting
+                    {path:'products', loadChindren: 'product module path #ProductsModule'}  => 'path#moduleName'
+
+PRELOADING  : to aviode blank page/hang conditional
+                    in appModule,   @NgModule({
+                                        imports: [RouterModule.forRoot(routes,{
+                                            preloadingStrategy : preloadAllModules
+                                        })],
+                                        exports: [RouterModule]
+                                    })
+
+
+Directive   : help us to attach behavior to html DOM (SAC), these are angular syntaxes which we write inside html
+              Structural: *ngFor, *ngIf
+              Attribute : hiden, disable
+              Component : it is a customized user control like (Directive with template)
+
+DECORATOR   : Define angular App that what kind of class is this, @component, @directive[class, property, methode, peramerer]
+
+DATA BINDING  : expression/interpolation {{}} => data flow from component to view
+                propery Binding               => data flow from component to view
+                Event Binding                 => data flow from view to component
+                Tow way data binding          => data flow from view to component & vice versa
+
+SERVICES => share common function, logical operations (http call, validations) to all module
+            services are singleton objects that get instantiated only once during the lifetime of an application
+
+DEPENDENCY INJECTTION (DI) : it is a an Application design pattern
+                             aviode creating object instances withinn component, Injects it via Constructor.
+                             
+AOT :  stands for Ahead-Of-Time compiler. 
+       It is used to convert your Angular HTML and TypeScript code into efficient JavaScript code during the build phase before the browser downloads and runs that code. 
+       By compiling the application during the build process provides a faster rendering in the browser.
+
+      code analysis
+      code generation
+      template type checking
+
+PERFORMANCE OPTIMIZATION  : Lazy Loading
+                            Avoid use of type Any
+                            Avoid use of unnesesory API calls
+                            Controlling Change Detection (OnPush)
+                            AOT compilation mode + compression
+                            Use Pure Pipes
+                            Use trackBy function on ngFor
+
+ANGULAR FILTER  : currency, date, lowercase, uppercase, orderBy, json, number, limitTo
+
+MULTICASTING    : Multicasting is the practice of broadcasting to a list of multiple subscribers in a single execution.
+
+
+DATA TRANSFER   : P-C => @input decorator
+                  C-P => @output decorator, eventEmitter
+                  C-C => Services
+
+ACCESS MODIFIER : Public, Private, Protected
+
+ROUTE GUARDS    : Guards are interfaces which can tell the router whether or not it should allow navigation to a requested route.
+                  CanActivate => used to access a route
+                  CanActivateChild => used to access child of route
+                  CanDeactivate => used to go out of a route
+                  CanLoad
+                  Resolve
+
+ROUTER EVENTS   : It allow you to track the lifecycle of the router.
+                  type Event = NavigationStart | NavigationEnd | NavigationCancel | NavigationError | NavigationSkipped | 
+                  GuardsCheckStart | GuardsCheckEnd | 
+                  RoutesRecognized | RouteConfigLoadStart | RouteConfigLoadEnd | 
+                  ChildActivationStart | ChildActivationEnd | 
+                  ActivationStart | ActivationEnd | Scroll | 
+                  ResolveStart | ResolveEnd;
+
+ChangeDetectionStrategy : Default, Onpush
+                          Every component in the component tree is checked to see if the model it depends changed. 
+                          Change detection will start from top to bottom.
+
+PIPE        : Pipes are simple functions to use in template expressions to accept an input value and return a transformed value.
+PURE PIPE   : A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe
+IMPURE PIPE : An impure pipe is called for every change detection cycle no matter whether the value or parameter(s) changes.
+JSON PIPE   : display JSON in html
+keyvalue PIPE : convert obj to Array to use with *ngFor
+ASYNC PIPE  : It subscribes to an observable or a promise and returns the last emitted value
+              avoide use of subcribe/unsubcribe of finite/infinite operations like http, timeInterval
+
+          import { Pipe, PipeTransform } from '@angular/core';
+          @Pipe({
+            name: 'duration',
+          })
+          export class DurationPipe implements PipeTransform {
+            transform(value: any) {
+              
+            }
+          }
+
+viewChild/viewChildren => used to get the reference of the DOM element rendered inside an Angular component to manipulate element properties.
+viewChild(static:false) => The static: false is going to be the default fallback behaviour in Angular 9.
+viewChild(static:true)  => The { static: true } option was introduced to support creating embedded views on the fly. 
+                            When you are creating a view dynamically and want to acces the TemplateRef,
+
+ElementRef => 
+
+ngZone: Some third party APIs are not handled by Zone. 
+        In those cases, the NgZone service provides a run() method that allows you to run a function inside the Angular zone. 
+        This function, and all asynchronous operations in that function, triggers change detection automatically at the correct time.
+
+Ng-content (in clild) => used to pass HTML content from parent to child. 
+                         We can use dummy Attribute, dummy class (in parent) to show content in clild using select Attribute.
+
+Ng-Container => used as a shadow div, to handle *ngFor, *ngIf 
+
+Ng-Tamplate = > it is an directive, whose id we can use in *ngIf 
+
+view encapsulation => View encapsulation defines whether the template and styles defined within the component can affect the whole application or vice versa.
+                      Emulated - styles from the main HTML propagate to the component.
+                      Native   - styles from the main HTML do not propagate to the component. 
+                      None     - styles from the component propagate back to the main HTML and therefore are visible to all components on the page
+
+content projection => Content projection is a pattern where you can insert, or project, the content you want to use inside a different component. 
+                      For example, consider a Card component which can accept the content provided by another component.
+
+ANGULAR APP SAFETY :
+      1. Cross site scripting(XSS) : attacker inject a script in the DOM (ie in the HTML)
+                                     calling any URL, attacking DB, currupt the web application
+          a. inbuit data SANITIZATION =>  {{}} convert script to plane text and displays it.
+                                          [innerHTML] attribute to remove script tag safely from text., href is safely
+
+      2. bypassing data sanitization : DomSanitizer, SafeUrl => used to bypass inbuilt data sanitization
+                                       this.sanitizer.bypassSecurityTrustUrl
+                                       this.sanitizer.bypassSecurityTrustStyle
+                                       this.sanitizer.bypassSecurityTrustScript
+                                       this.sanitizer.bypassSecurityTrustHtml
+                                       this.sanitizer.bypassSecurityTrustResourceUrl
+            genuneUrl: SafeUrl
+
+            this.genuneUrl = this.senitizer.bypassSecurityTrustUrl(this.unsafeUrl)

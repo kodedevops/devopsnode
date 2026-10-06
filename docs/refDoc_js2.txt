@@ -1,0 +1,233 @@
+strict equality operator => (===) 
+"use strict" => (directive), strictly checks if varibles are defined using "var/let" keyword. (x=10; => error = x is not defined)
+
+Dynamic language => means data type of the variable can cahange during run time.
+undefined => variable declared but value not assign.
+null      => indicate intentional absence of data.
+
+varible w/o var keyword => varible becomes global.
+
+data types => string, number, booleal, null(obj), undefined, obj, symble(es6)
+
+typeof/instanceof => typeof=> check the data type and return a string                                           typeof(null) => object
+                     insanceof => compare and check the prototype of {},[] and return boolean                   typeof(NaN)  => number
+                     Array.isarray(templist)
+                     templist instanceof Array
+
+let, var, const => let   => block scope, can not redecleare
+                   var   => function scope
+                   const => can not redifine, reasign 
+
+create Object => Literals
+                 Object.create(obj)
+                 constructor way
+                 ES6 class way
+
+global variable => global variable are accessable throughout the webpage or the document.
+
+1. Hoisting => It is a mechanism where all the variable and function declaration are move to the top of their scope, 
+
+2. Closure => closure is a function having access to parent scope,
+              closure is an inner function having access to outer function variables that makes function stateful
+              (because we can have the referance of the inner function)
+              using closure we can impliment private 
+
+why closure => to create self contained function, code, state.
+               also void global variable problem (Encapsulation and Abstraction). 
+
+3. callback function => A callback is a function passed as an argument to another function,  can be syncronous/asyncronous
+                        This technique allows a function to call another function
+                        A callback function can run after another function has finished
+
+4. Call, Apply, Bind => are predefined JavaScript method.
+                     all apply on funcion, used to change context,
+                var jethalalObj = {wife='Daya', age:'50'}   var BhideObj={wife:'Madhavi', age:30}
+                function popatlal(a,b){
+                    console.log(this.wife+' will cook food');
+                    console.log('a means '+a+', b means 'b);
+                }
+                call=> popatlal.call(BhideObj, 'hello', 'world')
+                apply=>popatlal.apply(BhideObj, ['hello', 'world'])             => let arr=['hello', 'world'];  popatlal(BhideObj, ...arr)
+                bind=> var returnThroughBind = popatlal.bind(BhideObj, 'hello', 'world');  returnThroughBind()
+                       var returnThroughBind = popatlal.bind(BhideObj);  returnThroughBind('hello', 'world')
+
+5. Promises => Pending, Resolve, Reject
+               var myPromises = new Promise((resolve, reject)=>{ condition; resolve('resolved')/reject('rejected')})
+               myPromise.then((res=>{console.log(res)})),
+               myPromise.catch((err)=>{console.log(err)})
+
+6. async await => 
+
+Inheritance => In javascript inheritance is based on object.
+               inheritance is done by using protptype object.(Object inheritance/prototypical inheritance)
+               
+Prototype Chain => 
+
+Pure Function => function that accept input and return a value w/o modifying any data outside its scope.
+
+function curring => When a function, instead of taking all the arguments at one time, takes the first one and 
+                    return a new function that takes the second one and return a new function.
+                    let data = sum(10)(20)(30)
+
+7. Splice, Slice Array => splice => add/remove from parent Array, return remaing of parent as Array
+                                   second arrgument is the number of element to be removed
+                        slice => only remove from parent Array, return the removed element in a new Array
+                                   second arrgument is the exclusive point index       
+                                
+9. add/remove property in {} => add    => use['name']='Sunil'; user.name='Sunil';
+                                delete => delete user.name;
+
+Web Worker => It is a javascript process that runs in the background of a webpage.
+              it is a saperate javascript thread that allow to execute multiple thread of javascript in parallel with each other.
+              it can not perform any DOM manipulation.
+
+17. detect operating system => navigator.platform;
+10. Redirection of Page => window.location.href = ''; window.location.replace = '';
+11. History of browser  => window.history.back(); window.history.forward(); window.history.go(number);
+
+12. Event Bubbling, capturing(tricalling) => propagaion of event from child to parent and parent to child 
+                                             Event.stopPropagation(), used to stop propagation of event bubbling, capturing
+
+13. Window.onload/onDocumentReady => onload function not run untill all info on page loaded, subtantial deplay
+                                     onDocumentReady run just after DOM loaded, for DOM manipulation
+
+14. Push+unshift array => add element to the end [], add element to the beginning of [];
+
+15. JS Cookies => samll text file stored in computer, created when user visit website(user detail, shopping cart info etc)
+
+16. void(0) => use to call a function w/o refreshing the page;
+
+
+18. self invoking function => ES6, Immediately Invoked Function Expression (IIFE), 
+                              (() => {console.log('Ok')})() 
+                              anonymous function that automatically(Immediately) called
+                              variable de in IIFE is not accessable out IIFE.
+                              solve name collision issue.
+
+Name collision => funcion init(){};                                          var init=0;                           
+                  var init=0;                                                (()=>{})()
+                  init()  // init is not a function
+
+19. synchronous(blocking)/asynchronous(non-blocking);
+
+20. Anonymous function => it allow to create a function at run time, has no name, can be stored in a variable(later can be used)
+                          handle using callback, promises, async-await, observables
+
+21. Document object model(DOM) => object oriented representation of HTML element, all element are part of window.document
+
+22. Window vs Document => window is a global obj, it holds variables, functions, history, location, documents
+                          Document are part of window object, consedered as window properties
+
+23. innerHTML vs innerText => innerHTML passes HTML tag as string   
+                              innerText passes content to the tag
+
+24. HTMLCollection vs NodeList => getElementByClassName, TagName returns HTMLCollections which does not have forEach by default
+                                  querySelecorAll return Nodelist where forEach can be used to transverse the element
+
+25. how to transverse HTLMCollection => by convert HTMLCollection to array, we can use forEach to ransverse the element
+
+26. Javascript Engine => javascript code is executed by js engine(available in each browser)
+
+27. language in which js written => crome(v8 c++), firefox(c,c++), IE(chakra), Safari(squirrelFish)
+
+28. ES standard => set javascript standard to all browser
+
+29. downloading => can not download for use, embeded in browser, for server-side can download it from NODE website
+
+
+31.  JS is single threaded
+
+32. Execution context => it is the environment in which the code is running
+
+33. stages of Execution context => creation  => memory alocated(variable hoisted and declear value not defined)
+                                   execution => JS engine execute code line by line
+
+34. Scope in JS => global, local scope (visibility of variables)
+
+35. setTimeout => asynchronous event, call funcion after some spefied time
+
+36. constructor =>  simple function used to create object in js
+                    It is the concept of Typescript, component is not initialized so DOM is not accessable
+                    binding is not happened till this moment so only call and variables are accessable.
+                    DI can be put here, initialization of variable and class is also done here
+
+37. Spread operator => work with array, replace use of apply() => let arr=['hello', 'world'];  popatlal(BhideObj, ...arr)
+                                        replace use of concate => arr1= arr1.concat(arr2)  => arr1 = [...arr1, ...arr2, ...arr3]
+                                        replace use of copy()  => let arr2 = [...arr1, 4, 5]
+                                        opposie of Rest Parameter
+
+arrow function => ()=>{} declare with (var, let, const), ()=>{} not getting hoister
+                  Argument object is not available
+                  ()=>{} do not have their own "this" / "this" in ()=>{} is binded to the previous value of "this"
+                  ie this outside and inside of ()=>{} is same 
+                  Implicitly returned by ()=>{}
+                  ()=>{} are not constructorable/callable  => let carData = New Car('Marity'); not happen
+
+38. new Set([]) => it removes he duplicate and reurn a new fresh array => let arr = [1,2,2,3]; console.log([...new Set(arr)])
+
+39. reverse string => arr.split('').reverse().join('')
+
+40. func decleration(named func), func expression(unnamed/anonymous func)
+
+extends => class instance of its sub/child class.
+
+Export(Named Export) => In TS you can export with the export keyword. It then can be imported via import {name} from "./mydir";. 
+                        This is called a named export. A file can export multiple named exports. Also the names of the imports have to match the exports. For example:
+                        // foo.js file                                // main.js file in same dir
+                        export class foo{}                            import {foo, bar} from "./foo";
+                        export class bar{}
+                        
+default export  =>  There can only be one default export per file. 
+                    When importing a default export we omit the curly brackets in the import statement. We can also choose our own name for our import.
+                    export default class foo{}
+                    import abc from "./foo";
+
+Class   =>  A class is a blueprint for creating an object, 
+            we call that created object an instance of a class, or a class instance or just instance for short. 
+            We instantiate a class by using the new keyword and when that happens javascript calls the constructor function.
+
+
+let obj3 = structuredClone(obj1); => clone inner part of any object(deepClone)
+
+ES6 features :let and const keywords :
+       Arrow Functions.(hoisting, this, Argument, callable)
+       Multi-line Strings.
+       Default Parameters.     let calculateArea = function(height = 100, width = 50) {// logic}
+       Template Literals.      let name = `My name is ${firstName} ${lastName}`
+       Destructuring Assignment.
+       Enhanced Object Literals.
+       Promises.
+
+arrow function => ()=>{} declare with (var, let, const), ()=>{} not getting hoister
+       Argument object is not available
+       ()=>{} do not have their own "this" / "this" in ()=>{} is binded to the previous value of "this"
+       ie this outside and inside of ()=>{} is same 
+       Implicitly returned by ()=>{}
+       ()=>{} are not constructorable/callable  => let carData = New Car('Marity'); not happen
+
+
+Destructuring => const x = [1, 2, 3, 4, 5];
+                 const [y, z] = x;
+
+
+Shellow copy => Object.assign(obj)
+                obj1 = {...obj};    arr1 = [...arr]
+
+Deep Copy => JSON.parse(JSON.stringify(obj))
+                            
+
+Critical rendering Path : 
+Debounce, throttle
+
+polyfill,
+prototype, 
+design pattern in javascript
+weak setInterval, weak Map,
+omit, partial in 
+union,interseptor
+
+
+03PM
+parsing of array of object
+sorting on array
+grouping of array:

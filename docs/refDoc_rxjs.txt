@@ -1,0 +1,91 @@
+RXJS => reactive extensions on javascript. It's used in Angular to handle asynchronous data streams and events, such as HTTP requests and user input.
+purpose => main purpose is to handle asyncronous data stream, and it also manupulate the data
+Observer => an Rxjs Object which subscribe the data stream, and listen to tha data stream, and recieve the data stream
+Observables => an Rxjs Object which emits out data stream, and it represnt asyncronous data stream
+
+Observable     : An observable is a unique object just like a promise that that is used to manage async code.
+
+HOT Observable: When the data is produced outside the Observable, we call it a hot Observable.
+
+cold Observable: When the data is produced by the Observable itself, we call it a cold Observable.
+                 It start emit values when we subscribe to them                           hot OBS always emit values
+                 Cold OBS are unicast                                                     hot OBS are multicast
+
+//////// Services ////////
+Subject         - No initial value or replay behavior.                               // new Subject()
+AsyncSubject    - Emits latest value to observers upon completion.                   // new AsyncSubject()
+BehaviorSubject - Requires an initial value and emits its current value (last emitted item) to new subscribers.
+ReplaySubject   - Emits specified number of last emitted values (a replay) to new subscribers.
+
+const sub = new ReplaySubject(3);
+sub.next(1);
+sub.next(2);
+sub.subscribe(console.log); // OUTPUT => 1,2
+sub.next(3); // OUTPUT => 3
+sub.next(4); // OUTPUT => 4
+sub.subscribe(console.log); // OUTPUT => 2,3,4
+
+Subject/BehaviorSubject
+public approvalStageMessage = new BehaviorSubject('Basic Approval is required!');
+
+//////// Component /////////
+1. Constructor
+this.service.approvalStageMessage.subcribe((message)=>{
+    this.message = message;
+})
+
+2.update
+this.service.approvalStageMessage.next("new message")
+
+
+subscribe methode in RXJS => 
+
+map, filter, reduce in javascript(rxjs operator)
+    map() method is used for creating a new array from an existing one.
+            const numbers = [1, 2, 3, 4];
+            const doubled = numbers.map(item => item * 2);
+            console.log(doubled); // [2, 4, 6, 8]
+    filter() method takes each element in an array and it applies a conditional statement against it.
+            const numbers = [1, 2, 3, 4];  
+            const evens = numbers.filter(item => item % 2 === 0);
+            console.log(evens); // [2, 4]
+    reduce() method reduces an array of values down to just one value.
+            const numbers = [1, 2, 3, 4];
+            const sum = numbers.reduce((result, item)=> {
+            return result + item;
+            }, 0);
+            console.log(sum); // 10
+
+    pipe => operation/data manupulation in pipe
+    map => transform each emitter item
+    tap => return original (for debuging)
+    take => Emits specified number of items   list.take(2)
+
+
+
+
+
+
+multiple API call in single exicution : 
+    1. using Subscribe => this.http.get('/api/people/1').subscribe(character => {
+                            this.http.get(character.homeworld).subscribe(homeworld => {
+                                character.homeworld = homeworld;
+                                this.loadedCharacter = character;
+                            });
+                            });
+    2. MergeMap =>  this.homeworld = this.http
+                        .get('/api/people/1')
+                        .pipe(mergeMap(character => this.http.get(character.homeworld)));
+                    }
+    3. ForkJoin => let character = this.http.get('https://swapi.co/api/people/1');
+                                    let characterHomeworld = this.http.get('http://swapi.co/api/planets/1');
+
+                                    forkJoin([character, characterHomeworld]).subscribe(results => {
+                                        results[0].homeworld = results[1];
+                                        this.loadedCharacter = results[0];
+                                    });
+
+    SwitchMap = >inner obsevable process the latest value of outer observable once.             latest-switch-once
+    ExhaustMap => inner obsevable process the first value of outer observable once.             first-exhaust-once
+    Mergemap  => inner obsevable process the latest value of outer observable every time.       latest-merge-everyTime
+    cocateMap => inner obsevable process all value of outer observable every time.
