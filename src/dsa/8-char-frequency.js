@@ -10,3 +10,16 @@ for (let i=0; i<str.length; i++) {
 }
 
 console.log("Character frequency in the string:", map); // Output: Character frequency in the string: Map(8) { 'h' => 1, 'e' => 1, 'l' => 3, 'o' => 2, ' ' => 1, 'w' => 1, 'r' => 1, 'd' => 1 }
+
+
+
+// max item frequency
+let maxFrequency = 0;
+let maxFrequencyItem = null;    
+for (let [item, frequency] of map.entries()) {
+    if (frequency > maxFrequency) {
+        maxFrequency = frequency;
+        maxFrequencyItem = item;
+    }
+}
+console.log("Item with maximum frequency:", maxFrequencyItem, "with frequency:", maxFrequency); // Output: Item with maximum frequency: l with frequency: 3
